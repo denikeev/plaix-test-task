@@ -1,0 +1,11 @@
+{
+  "name": "plaix-test-task",
+  "version": "0.0.1",
+  "description": "simple feedback form",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "denikeev",
+  "license": "ISC"
+}
