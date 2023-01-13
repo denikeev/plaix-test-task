@@ -1,14 +1,16 @@
 install:
 	npm ci
 
-start-server: build start-backend
+start-production: build start-backend
 
 start-frontend:
 	make -C frontend start
 
 start-backend:
 	npx nodemon ./bin/server.js
-	# DEBUG=*
+
+start-debug-backend:
+	DEBUG=* npx nodemon ./bin/server.js
 	
 lint-frontend:
 	make -C frontend lint

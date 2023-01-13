@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import app from '../index.js';
+import server from '../index.js';
 
-const port = 4000;
+const port = process.env.PORT || 5001;
+const app = server();
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`);
+  console.log(`App listening on port ${port}!`);
 });

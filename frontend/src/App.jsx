@@ -37,7 +37,10 @@ const App = () => {
       // setAuthFailed(false);
 
       try {
+        console.log('values>>>', values);
         const res = await axios.post(routes.feedbackPath(), values);
+        console.log('res.data>>>', res.data);
+        console.log('res.status>>>', res.status);
         // navigate(urls.root);
       } catch (err) {
         formik.setSubmitting(false);
