@@ -3,8 +3,12 @@ import morgan from 'morgan';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import createFeedbackTable from './services/createFeedbackTable.js';
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+await createFeedbackTable();
 
 export default () => {
   const app = express();

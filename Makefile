@@ -17,8 +17,8 @@ start-backend:
 start-debug-backend:
 	DEBUG=* npx nodemon ./bin/server.js
 	
-lint-frontend:
-	make -C frontend lint
+lint:
+	npx eslint .
 
 build:
 	npm run build
