@@ -1,11 +1,13 @@
-import { Pool } from 'pg';
+import pkg from 'pg';
 import dbConfig from './db.config.js';
 
-const pool = new Pool(dbConfig);
+const { Pool } = pkg;
+
+const poolInstance = new Pool(dbConfig);
 
 export const query = async (queryText, values) => {
-  const { rows } = await pool.query(queryText, values);
+  const { rows } = await poolInstance.query(queryText, values);
   return rows;
 };
 
-export default pool;
+export default poolInstance;
