@@ -1,0 +1,3 @@
+CREATE USER demouser WITH PASSWORD 'demopassword' CREATEDB;
+CREATE DATABASE plaix;
+ALTER DATABASE plaix OWNER TO demouser;

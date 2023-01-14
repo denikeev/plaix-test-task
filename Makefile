@@ -1,3 +1,8 @@
+all: install prepare
+
+prepare: db-demo-init 
+	cp -n .env.example .env || true
+
 install:
 	npm ci
 
@@ -17,3 +22,6 @@ lint-frontend:
 
 build:
 	npm run build
+
+db-demo-init:
+	sudo -u postgres psql < init.sql
