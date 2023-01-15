@@ -18,7 +18,7 @@ start-debug-backend:
 	DEBUG=* npx nodemon ./bin/server.js
 	
 lint:
-	npx eslint .
+	npx eslint --ext .jsx,.js .
 
 build:
 	npm run build
