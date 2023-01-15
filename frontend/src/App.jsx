@@ -38,6 +38,7 @@ const App = () => {
 
       try {
         const res = await axios.post(routes.feedbackPath(), values);
+        console.log('values>>>', values);
         console.log('res.data>>>', res.data);
         console.log('res.status>>>', res.status);
         // navigate(urls.root);

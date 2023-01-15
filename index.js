@@ -4,7 +4,8 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 import createFeedbackTable from './services/createFeedbackTable.js';
-import addNewFeedback from './queries/addNewFeedback.js';
+// import addNewFeedback from './queries/addNewFeedback.js';
+import feedback from './routes/feedback.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -17,7 +18,7 @@ export default () => {
   app.use(express.json());
   app.use(express.static(path.join(__dirname, '/frontend/build')));
 
-  app.post('/api/v1/feedback', addNewFeedback);
+  app.use('/', feedback);
 
   app.use((req, res) => {
     res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
