@@ -17,6 +17,9 @@ start-backend:
 
 start-debug-backend:
 	DEBUG=* npx nodemon ./bin/server.js
+
+start-debug-feedback:
+	DEBUG=feedback npx nodemon ./bin/server.js
 	
 lint:
 	npx eslint --ext .jsx,.js .

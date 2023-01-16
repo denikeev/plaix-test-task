@@ -4,6 +4,7 @@ import helmet from 'helmet';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
+import log from './log.js';
 import createFeedbackTable from './queries/createFeedbackTable.js';
 import feedbackRoute from './routes/feedbackRoute.js';
 
@@ -11,9 +12,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 await createFeedbackTable();
+log('Table feedback is ready');
 
 export default () => {
-  console.log('app process>>>', process.env.NODE_ENV);
   const app = express();
   app.use(morgan('combined'));
   app.use(helmet());
