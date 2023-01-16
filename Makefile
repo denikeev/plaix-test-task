@@ -3,8 +3,15 @@ all: install prepare
 prepare: db-demo-init 
 	cp -n .env.example .env || true
 
+db-demo-init:
+	sudo -u postgres psql < init.sql
+	
 install:
 	npm ci
+	make -C frontend install
+
+start-backend: build
+	NODE_ENV=development npx nodemon ./bin/server.js
 
 start-production: build 
 	NODE_ENV=production npx nodemon ./bin/server.js
@@ -12,21 +19,14 @@ start-production: build
 start-frontend:
 	make -C frontend start
 
-start-backend:
-	NODE_ENV=development npx nodemon ./bin/server.js
-
-start-debug-backend:
-	DEBUG=* npx nodemon ./bin/server.js
+test:
+	NODE_OPTIONS=--experimental-vm-modules DEBUG=feedback npx jest
 
 lint:
 	npx eslint --ext .jsx,.js .
 
-test:
-	NODE_OPTIONS=--experimental-vm-modules DEBUG=feedback npx jest
+debug:
+	DEBUG=* npx nodemon ./bin/server.js
 
 build:
 	npm run build
-
-db-demo-init:
-	sudo -u postgres psql < init.sql
-	sudo -u postgres psql -d plaix < schema.sql

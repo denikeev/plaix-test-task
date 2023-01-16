@@ -18,8 +18,8 @@ feedbackRoute.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    await addNewFeedback(req.body);
-    return res.status(200).send('request received');
+    const addedRow = await addNewFeedback(req.body);
+    return res.status(200).json(addedRow);
   },
 );
 
