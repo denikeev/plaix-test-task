@@ -1,5 +1,5 @@
 import format from 'pg-format';
-import { query } from '../services/db.js';
+import query from '../services/query.js';
 
 const addNewFeedback = async (data) => {
   const date = new Date();
@@ -9,8 +9,9 @@ const addNewFeedback = async (data) => {
   const sql = format('INSERT INTO feedback (name, body, email, created_at) VALUES (%L) RETURNING *', values);
 
   console.log('formatedSql>>>', sql);
-  const response = await query(sql);
-  console.log('responseRows>>>', response);
+  const [addedRow] = await query(sql);
+  console.log('addedRow>>>', addedRow);
+  return addedRow;
 };
 
 export default addNewFeedback;

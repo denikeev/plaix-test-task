@@ -1,6 +1,6 @@
-import { query } from './db.js';
+import query from '../services/query.js';
 
-const queryText = `
+const sql = `
 CREATE TABLE IF NOT EXISTS feedback (
   id bigint PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(100) NOT NULL,
@@ -9,4 +9,4 @@ CREATE TABLE IF NOT EXISTS feedback (
   created_at TIMESTAMPTZ NOT NULL
 );`;
 
-export default async () => query(queryText);
+export default async () => query(sql);

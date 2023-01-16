@@ -17,6 +17,7 @@ import {
 import routes from './routes.js';
 
 const App = () => {
+  // eslint-disable-next-line no-unused-vars
   const [sended, setSended] = useState(null);
   const nameRef = useRef();
 
@@ -39,8 +40,8 @@ const App = () => {
       try {
         const res = await axios.post(routes.feedbackPath(), values);
         console.log('values>>>', values);
-        console.log('res.data>>>', res.data);
         console.log('res.status>>>', res.status);
+        console.log('res.data>>>', res.data);
         // navigate(urls.root);
       } catch (err) {
         formik.setSubmitting(false);

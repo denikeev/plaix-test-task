@@ -1,26 +1,27 @@
 import { Router } from 'express';
 import { body, validationResult } from 'express-validator';
 
+import routes from './routes.js';
 import addNewFeedback from '../queries/addNewFeedback.js';
 
-const router = Router();
+const feedbackRoute = Router();
 
-router.post(
-  '/api/v1/feedback',
+feedbackRoute.post(
+  routes.feedbackPath(),
   body('name').isLength({ min: 1, max: 70 }).trim(),
   body('email').isEmail().trim(),
   body('body').isLength({ min: 1, max: 1000 }).trim(),
-  (req, res) => {
+  async (req, res) => {
     console.log('req.body>>>', req.body);
 
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
-    addNewFeedback(req.body);
-    res.status(200);
-    return res.send('all okey');
+    const addedRow = await addNewFeedback(req.body);
+    console.log('addedRow>>>', addedRow);
+    return res.status(200).send('request received');
   },
 );
 
-export default router;
+export default feedbackRoute;

@@ -6,13 +6,14 @@ prepare: db-demo-init
 install:
 	npm ci
 
-start-production: build start-backend
+start-production: build 
+	NODE_ENV=production npx nodemon ./bin/server.js
 
 start-frontend:
 	make -C frontend start
 
 start-backend:
-	npx nodemon ./bin/server.js
+	NODE_ENV=development npx nodemon ./bin/server.js
 
 start-debug-backend:
 	DEBUG=* npx nodemon ./bin/server.js
@@ -25,3 +26,4 @@ build:
 
 db-demo-init:
 	sudo -u postgres psql < init.sql
+	sudo -u postgres psql -d plaix < schema.sql
