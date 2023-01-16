@@ -23,8 +23,8 @@ export default () => {
 
   app.use('/', feedbackRoute);
 
-  app.use((req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'build', 'index.html'));
+  app.use('*', (req, res) => {
+    res.status(404).json({ message: 'Page not found' });
   });
 
   return app;
